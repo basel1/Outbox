@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="salah.basel.nanodegree.outbox.UI.fullArticleDetails">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/art_container"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:id="@+id/writer_img"
+                android:transitionName="profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/writericon"
+                android:contentDescription="@string/app_name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/text_head2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/writer_img"
+                android:inputType="textMultiLine"
+                android:paddingBottom="10dp"
+
+                android:text="Title"
+                android:textColor="@color/cardview_shadow_end_color"
+                android:textSize="30sp" />
+
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_head2"
+                android:layout_marginRight="25dp"
+                android:text="time"
+                android:visibility="gone"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/text_writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/writer_img"
+                android:gravity="right"
+                android:inputType="textMultiLine"
+
+                android:text="Writer"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/art_pic"
+                android:layout_width="fill_parent"
+                android:layout_height="192dp"
+                android:layout_below="@+id/text_writer"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+
+
+            <TextView
+                android:id="@+id/art_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/art_pic"
+                android:gravity="center"
+
+                android:paddingEnd="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:text="fffffffffffff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/topNews"
+        android:icon="@drawable/top_news"
+
+        android:title="@string/TopNews" />
+    <item
+        android:id="@+id/editions"
+        android:icon="@drawable/editions"
+        android:title="@string/Editions" />
+
+    <item
+        android:id="@+id/favourite"
+        android:icon="@drawable/heart"
+        android:title="@string/favourite" />
+    <item
+    android:id="@+id/aboutUs"
+    android:icon="@drawable/aboutus"
+    android:title="@string/aboutUs" />
+
+</menu>
