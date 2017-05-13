@@ -4,16 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dip"
-    android:background="@drawable/myshape"
- >
-<ImageView
-    android:id="@+id/widget_pic"
-    android:layout_width="150dip"
-    android:scaleType="fitXY"
-    android:layout_height="90dip"
-    android:layout_marginLeft="12dp"
-    android:layout_marginTop="9dp"
-    android:src="@drawable/logo" />
+    android:background="@drawable/myshape">
+
+    <ImageView
+        android:contentDescription="@string/articleImageWidget"
+        android:id="@+id/widget_pic"
+        android:layout_width="150dip"
+        android:scaleType="fitXY"
+        android:layout_height="90dip"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/update"
@@ -23,8 +24,6 @@
         android:gravity="center_horizontal|center_vertical"
         android:layout_alignTop="@+id/widget_pic"
         android:layout_toRightOf="@+id/widget_pic"
-        android:text="Static Text"
-       >
-    </TextView>
+        android:text="@string/staticText"></TextView>
 
 </RelativeLayout>

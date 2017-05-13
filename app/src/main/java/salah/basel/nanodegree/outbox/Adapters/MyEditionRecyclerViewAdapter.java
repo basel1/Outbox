@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class MyEditionRecyclerViewAdapter extends RecyclerView.Adapter<MyEditionRecyclerViewAdapter.ViewHolder> {
 
     ArrayList<Edition> editions;
-    public MyEditionRecyclerViewAdapter(ArrayList<Edition> editions) {
-        this.editions=editions;
-    }
 
+    public MyEditionRecyclerViewAdapter(ArrayList<Edition> editions) {
+        this.editions = editions;
+    }
 
 
     @Override
@@ -37,7 +37,7 @@ public class MyEditionRecyclerViewAdapter extends RecyclerView.Adapter<MyEdition
         Picasso.with(holder.mView.getContext()).load(editions.get(position).getPhoto())
                 .error(R.drawable.loading)
                 .placeholder(R.drawable.loading)
-                .resize(800,600)
+                .resize(800, 600)
                 .into(holder.editionImage);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +65,12 @@ public class MyEditionRecyclerViewAdapter extends RecyclerView.Adapter<MyEdition
             mView = view;
             editionTitle = (TextView) view.findViewById(R.id.edition_title);
             editionNumber = (TextView) view.findViewById(R.id.edition_number);
-            editionImage= (ImageView) view.findViewById(R.id.edition_image);
+            editionImage = (ImageView) view.findViewById(R.id.edition_image);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" ;
+            return super.toString() + " '";
         }
     }
 }

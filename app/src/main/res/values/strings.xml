@@ -12,4 +12,10 @@
     <string name="writers">Writers</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="icon_image">Icon Image</string>
+    <string name="articleImageWidget">article image</string>
+    <string name="editionImage">Edition Image</string>
+    <string name="favouriteButton">Favourite Icon</string>
+    <string name="staticText">Static Text</string>
+    <string name="articleAdded">تم اضافة المقال للمفضلة</string>
 </resources>

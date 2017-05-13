@@ -26,10 +26,11 @@ import salah.basel.nanodegree.outbox.R;
 public class WidgetListAdapter implements RemoteViewsService.RemoteViewsFactory {
     Context context;
     ArrayList<Article> articles;
-    public WidgetListAdapter(Context context, Intent intent,ArrayList<Article> Articles) {
-this.context=context;
-articles= Articles;
-this.onDataSetChanged();
+
+    public WidgetListAdapter(Context context, Intent intent, ArrayList<Article> Articles) {
+        this.context = context;
+        articles = Articles;
+        this.onDataSetChanged();
     }
 
     @Override
@@ -49,19 +50,19 @@ this.onDataSetChanged();
 
     @Override
     public int getCount() {
-        if(articles==null)
-            articles=new ArrayList<>();
+        if (articles == null)
+            articles = new ArrayList<>();
         return articles.size();
     }
 
     @Override
     public RemoteViews getViewAt(int i) {
-        final  RemoteViews remoteView = new RemoteViews(
+        final RemoteViews remoteView = new RemoteViews(
                 context.getPackageName(), R.layout.widget_layout);
-        remoteView.setTextViewText(R.id.update,articles.get(i).getHead());
-        remoteView.setImageViewResource(R.id.widget_pic,R.drawable.logo);
+        remoteView.setTextViewText(R.id.update, articles.get(i).getHead());
+        remoteView.setImageViewResource(R.id.widget_pic, R.drawable.logo);
         try {
-            Bitmap b = Picasso.with(context).load(articles.get(i).getPhoto()).resize(450,400).get();
+            Bitmap b = Picasso.with(context).load(articles.get(i).getPhoto()).resize(450, 400).get();
             remoteView.setImageViewBitmap(R.id.widget_pic, b);
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,7 +73,7 @@ this.onDataSetChanged();
 
     @Override
     public RemoteViews getLoadingView() {
-        final  RemoteViews remoteView = new RemoteViews(
+        final RemoteViews remoteView = new RemoteViews(
                 context.getPackageName(), R.layout.widget_layout);
 
         return remoteView;
@@ -92,6 +93,7 @@ this.onDataSetChanged();
     public boolean hasStableIds() {
         return false;
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView articleHead;
@@ -109,4 +111,4 @@ this.onDataSetChanged();
             favIcon = (ImageView) view.findViewById(R.id.favourite);
         }
     }
-    }
+}

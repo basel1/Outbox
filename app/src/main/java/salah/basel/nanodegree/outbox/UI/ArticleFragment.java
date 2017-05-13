@@ -47,11 +47,11 @@ public class ArticleFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ArticleFragment newInstance(int arSouce ,int columnCount) {
+    public static ArticleFragment newInstance(int arSouce, int columnCount) {
         ArticleFragment fragment = new ArticleFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
-        args.putInt(ARG_ARTICLE_SOURCE,arSouce);
+        args.putInt(ARG_ARTICLE_SOURCE, arSouce);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,7 +62,7 @@ public class ArticleFragment extends Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-            articleSource=getArguments().getInt(ARG_ARTICLE_SOURCE);
+            articleSource = getArguments().getInt(ARG_ARTICLE_SOURCE);
         }
     }
 
@@ -80,10 +80,10 @@ public class ArticleFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-if(articleSource==0)
-    new FireBaseRequestor().getArticleData(this);
-            else if(articleSource==1)
-    recyclerView.setAdapter(new MyArticleRecyclerViewAdapter(new FavouriteHandler(getContext()).getArticlesData(),mListener));
+            if (articleSource == 0)
+                new FireBaseRequestor().getArticleData(this);
+            else if (articleSource == 1)
+                recyclerView.setAdapter(new MyArticleRecyclerViewAdapter(new FavouriteHandler(getContext()).getArticlesData(), mListener));
 
         }
         return view;
@@ -107,11 +107,12 @@ if(articleSource==0)
         mListener = null;
     }
 
-public void updateAdapter(ArrayList<Article> articles)
+    public void updateAdapter(ArrayList<Article> articles)
 
-{
-    recyclerView.setAdapter(new MyArticleRecyclerViewAdapter(articles, mListener));
-}
+    {
+        recyclerView.setAdapter(new MyArticleRecyclerViewAdapter(articles, mListener));
+    }
+
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);

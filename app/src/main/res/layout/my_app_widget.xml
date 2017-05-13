@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:background="#59c"
     android:padding="@dimen/widget_margin">
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

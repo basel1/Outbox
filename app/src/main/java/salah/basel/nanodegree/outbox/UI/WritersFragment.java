@@ -21,7 +21,8 @@ import salah.basel.nanodegree.outbox.parser.FireBaseRequestor;
 public class WritersFragment extends Fragment {
 
     RecyclerView recyclerView;
-
+Context context;
+    FireBaseRequestor fb;
     public WritersFragment() {
     }
 
@@ -29,7 +30,7 @@ public class WritersFragment extends Fragment {
     public static WritersFragment newInstance() {
         WritersFragment fragment = new WritersFragment();
         Bundle args = new Bundle();
-   //     args.putInt(ARG_COLUMN_COUNT, columnCount);
+        //     args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,7 +40,7 @@ public class WritersFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-     //       mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            //       mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
 
@@ -49,16 +50,24 @@ public class WritersFragment extends Fragment {
         View view = inflater.inflate(R.layout.writers_fragment_list, container, false);
 
         Context context = view.getContext();
-             recyclerView = (RecyclerView) view.findViewById(R.id.list);
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        this.context=context;
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-           new FireBaseRequestor().getWriterData(this);
+       fb= new FireBaseRequestor();
+        fb.getWriterData(this);
 
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        fb.removeListner();
+        super.onDestroy();
+
+    }
 
     public void updateAdapter(ArrayList<Writer> writers) {
-        recyclerView.setAdapter(new WritersRecycleAdapter(getActivity(),writers));
+        recyclerView.setAdapter(new WritersRecycleAdapter(getActivity(), writers));
     }
 }

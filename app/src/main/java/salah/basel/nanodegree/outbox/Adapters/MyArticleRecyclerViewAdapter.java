@@ -21,10 +21,9 @@ import salah.basel.nanodegree.outbox.R;
 import salah.basel.nanodegree.outbox.UI.ArticleFragment.OnListFragmentInteractionListener;
 import salah.basel.nanodegree.outbox.Model.Article;
 import salah.basel.nanodegree.outbox.UI.dummy.DummyContent;
-import salah.basel.nanodegree.outbox.UI.fullArticleDetails;
+import salah.basel.nanodegree.outbox.UI.FullArticleDetails;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.support.v7.graphics.Palette.from;
 
@@ -35,8 +34,8 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
     private final OnListFragmentInteractionListener mListener;
 
     public MyArticleRecyclerViewAdapter(ArrayList<Article> articles, OnListFragmentInteractionListener listener) {
-        if(articles==null)
-            articles=new ArrayList<>();
+        if (articles == null)
+            articles = new ArrayList<>();
         mValues = articles;
         mListener = listener;
     }
@@ -45,7 +44,7 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_article, parent, false);
-       // if(mValues.size()==0)
+        // if(mValues.size()==0)
         return new ViewHolder(view);
     }
 
@@ -57,28 +56,28 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
         Picasso.with(holder.mView.getContext()).load(mValues.get(position).getPhoto())
                 .error(R.drawable.loading)
                 .placeholder(R.drawable.loading)
-                .resize(800,600)
+                .resize(800, 600)
                 .into(holder.image);
-     //   setImagePalete(holder);
-      //  holder.mContentView.setText(mValues.get(position).content);
+        //   setImagePalete(holder);
+        //  holder.mContentView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    mListener.onListFragmentInteraction(new DummyContent.DummyItem("","",""));
+                    mListener.onListFragmentInteraction(new DummyContent.DummyItem("", "", ""));
                 }
-                Intent intent=new Intent(v.getContext(), fullArticleDetails.class);
-                intent.putExtra("position",position);
-                intent.putExtra("time",mValues.get(position).getArt_time());
-                intent.putExtra("head",mValues.get(position).getHead());
-                intent.putExtra("content",mValues.get(position).getContent());
-                intent.putExtra("writer_name",mValues.get(position).getWriter_name());
-                intent.putExtra("photo_path",mValues.get(position).getPhoto());
+                Intent intent = new Intent(v.getContext(), FullArticleDetails.class);
+                intent.putExtra("position", position);
+                intent.putExtra("time", mValues.get(position).getArt_time());
+                intent.putExtra("head", mValues.get(position).getHead());
+                intent.putExtra("content", mValues.get(position).getContent());
+                intent.putExtra("writer_name", mValues.get(position).getWriter_name());
+                intent.putExtra("photo_path", mValues.get(position).getPhoto());
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((MainActivity)v.getContext(), holder.image, "profile");
-               v.getContext().startActivity(intent, options.toBundle());
-             //   v.getContext().startActivity(intent);
+                        makeSceneTransitionAnimation((MainActivity) v.getContext(), holder.image, "profile");
+                v.getContext().startActivity(intent, options.toBundle());
+                //   v.getContext().startActivity(intent);
             }
         });
         holder.favIcon.setOnClickListener(new View.OnClickListener() {
@@ -91,9 +90,9 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
     }
 
     private void setImagePalete(ViewHolder vh) {
-        Bitmap b=((BitmapDrawable)vh.image.getDrawable()).getBitmap();
-       Palette.Builder p= Palette.from(b);
-        int color=p.generate().getMutedColor(0);
+        Bitmap b = ((BitmapDrawable) vh.image.getDrawable()).getBitmap();
+        Palette.Builder p = Palette.from(b);
+        int color = p.generate().getMutedColor(0);
         vh.articleFooter.setBackgroundColor(color);
 
     }
@@ -114,15 +113,15 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            image= (ImageView) view.findViewById(R.id.article_image);
+            image = (ImageView) view.findViewById(R.id.article_image);
             articleHead = (TextView) view.findViewById(R.id.article_head);
-            articleFooter= (LinearLayout) view.findViewById(R.id.article_footer);
-            favIcon= (ImageView) view.findViewById(R.id.favourite);
+            articleFooter = (LinearLayout) view.findViewById(R.id.article_footer);
+            favIcon = (ImageView) view.findViewById(R.id.favourite);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" ;
+            return super.toString() + " '";
         }
     }
 }

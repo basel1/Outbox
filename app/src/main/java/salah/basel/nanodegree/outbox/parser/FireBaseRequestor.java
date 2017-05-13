@@ -31,26 +31,26 @@ public class FireBaseRequestor {
     public static final String FIRE_BASE_WRITER = "Writers";
     public static final String FIRE_BASE_EDITION = "Editions";
     static boolean calledAlready = false;
-   public static ArrayList<Article> widgetArticles;
-FirebaseDatabase mDatabase;
-    public FirebaseDatabase getDatabase()
-{
-    if (!calledAlready)
-    {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        calledAlready = true;
+    public static ArrayList<Article> widgetArticles;
+    FirebaseDatabase mDatabase;
+
+    public FirebaseDatabase getDatabase() {
+        if (!calledAlready) {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        return database;
     }
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-return database;
-}
     public void getArticleData(final ArticleFragment articleFragment) {
         final ArrayList<Article> arList;
-      //  Firebase ref = new Firebase(FIRE_BASE_ROOT_URL).child(FIRE_BASE_ARTICLE);
+        //  Firebase ref = new Firebase(FIRE_BASE_ROOT_URL).child(FIRE_BASE_ARTICLE);
         // ref.child("Writer").setValue(MyApplication.getInstance().getWriterData());
 
         DatabaseReference mDatabase;
-        mDatabase=getDatabase().getReference(FIRE_BASE_ARTICLE);
+        mDatabase = getDatabase().getReference(FIRE_BASE_ARTICLE);
 
         mDatabase.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
@@ -64,17 +64,17 @@ return database;
             }
         });
     }
-
+    DatabaseReference mWriterDatabase;
     public void getWriterData(final WritersFragment context) {
-        DatabaseReference mDatabase;
 
-        mDatabase = getDatabase().getReference(FIRE_BASE_WRITER);
+
+        mWriterDatabase = getDatabase().getReference(FIRE_BASE_WRITER);
         //  Firebase ref=new Firebase(FIRE_BASE_ROOT_URL).child(FIRE_BASE_WRITER);
         // ref.child("Writer").setValue(MyApplication.getInstance().getWriterData());
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        valueEventListener=new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                configerWriterObjects(dataSnapshot,context);
+                configerWriterObjects(dataSnapshot, context);
             }
 
             @Override
@@ -82,9 +82,16 @@ return database;
                 L.m("firebase error: " + databaseError.getMessage());
 
             }
-        });
-    }
+        };
+        mWriterDatabase.addValueEventListener(valueEventListener);
 
+    }
+    public void removeListner()
+    {
+        mWriterDatabase.removeEventListener(valueEventListener);
+
+    }
+ValueEventListener valueEventListener;
     private void configerWriterObjects(DataSnapshot snapshot, WritersFragment writersFragment) {
         int size = (int) snapshot.getChildrenCount();
         ArrayList<Writer> Articles = new ArrayList<>(size);
@@ -108,7 +115,7 @@ return database;
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                configerEditionrObjects(dataSnapshot,editionFragment);
+                configerEditionrObjects(dataSnapshot, editionFragment);
             }
 
             @Override
@@ -189,6 +196,7 @@ L.m(Editions.get(i).getName()+" index "+index);*/
         }
         articleFragment.updateAdapter(Articles);
     }
+
     private void configerArticleObjects(DataSnapshot snapshot, Context widget) {
         int size = (int) snapshot.getChildrenCount();
         ArrayList<Article> Articles = new ArrayList<>(size);
@@ -197,30 +205,31 @@ L.m(Editions.get(i).getName()+" index "+index);*/
         for (int i = 0; i < size; i++) {
             ses = snapshots.iterator().next().getValue(Article.class);
             //       ses= snapshot.child(String.valueOf(i)).getValue(Article.class);
-            if(i>280)
-            Articles.add(ses);
+            if (i > 280)
+                Articles.add(ses);
         }
-       widgetArticles= Articles;
+        widgetArticles = Articles;
         AppWidgetManager man = AppWidgetManager.getInstance(widget.getApplicationContext());
         int[] ids = man.getAppWidgetIds(
-                new ComponentName(widget.getApplicationContext(),MyAppWidget.class));
+                new ComponentName(widget.getApplicationContext(), MyAppWidget.class));
         Intent updateIntent = new Intent();
         updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         widget.sendBroadcast(updateIntent);
-      //  widget.updateWidgetAdapter(Articles);
+        //  widget.updateWidgetAdapter(Articles);
     }
+
     private static final String ACTION_DATA_UPDATED = "salah.basel.nanodegree.outbox.ACTION_DATA_UPDATED";
 
     public void excuteRequestes() {
-    //    getArticleData(null);
+        //    getArticleData(null);
         getWriterData(null);
         getEditionData(null);
     }
 
     public void getArticleData(final Context myAppWidget) {
         DatabaseReference mDatabase;
-        mDatabase=getDatabase().getReference(FIRE_BASE_ARTICLE);
+        mDatabase = getDatabase().getReference(FIRE_BASE_ARTICLE);
 
         mDatabase.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override

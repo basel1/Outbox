@@ -22,10 +22,9 @@ public class DrawerAdapter extends BaseAdapter {
     Context context;
 
 
-    public DrawerAdapter(ArrayList<DrawerItem> items,Context context)
-    {
-        this.items=items;
-        this.context=context;
+    public DrawerAdapter(ArrayList<DrawerItem> items, Context context) {
+        this.items = items;
+        this.context = context;
     }
 
     @Override

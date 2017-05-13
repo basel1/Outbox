@@ -22,6 +22,7 @@ public class EditionFragment extends Fragment {
 
     private OnListFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+
     public EditionFragment() {
     }
 
@@ -48,9 +49,9 @@ public class EditionFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-             recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
 
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
             new FireBaseRequestor().getEditionData(this);
         }
         return view;
@@ -75,6 +76,7 @@ public class EditionFragment extends Fragment {
     {
         recyclerView.setAdapter(new MyEditionRecyclerViewAdapter(articles));
     }
+
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);

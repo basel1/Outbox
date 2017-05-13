@@ -5,9 +5,11 @@
     android:orientation="horizontal">
 
     <ImageView
+        android:contentDescription="@string/icon_image"
         android:id="@+id/icon_image"
         android:layout_width="80dp"
         android:layout_height="80dp" />
+
     <TextView
         android:id="@+id/navi_menuitem"
         android:layout_width="match_parent"

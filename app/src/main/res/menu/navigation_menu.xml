@@ -15,8 +15,8 @@
         android:icon="@drawable/heart"
         android:title="@string/favourite" />
     <item
-    android:id="@+id/aboutUs"
-    android:icon="@drawable/aboutus"
-    android:title="@string/aboutUs" />
+        android:id="@+id/aboutUs"
+        android:icon="@drawable/aboutus"
+        android:title="@string/aboutUs" />
 
 </menu>

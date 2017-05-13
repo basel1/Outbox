@@ -19,8 +19,9 @@ import salah.basel.nanodegree.outbox.parser.FireBaseRequestor;
  * Implementation of App Widget functionality.
  */
 public class MyAppWidget extends AppWidgetProvider {
-private Context context;
-    private int [] appWidgetIds;
+    private Context context;
+    private int[] appWidgetIds;
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -32,12 +33,14 @@ private Context context;
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
-private AppWidgetManager appWidgetManager;
+
+    private AppWidgetManager appWidgetManager;
+
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-this.appWidgetManager=appWidgetManager;
-        this.context=context;
-this.appWidgetIds=appWidgetIds;
+        this.appWidgetManager = appWidgetManager;
+        this.context = context;
+        this.appWidgetIds = appWidgetIds;
         Intent intent = new Intent(context,
                 MyAppWidgetService.class);
 
@@ -61,7 +64,7 @@ this.appWidgetIds=appWidgetIds;
         // Update the widgets via the service
         intent.setData(Uri.parse(
                 intent.toUri(Intent.URI_INTENT_SCHEME)));
-        if(FireBaseRequestor.widgetArticles!=null) {
+        if (FireBaseRequestor.widgetArticles != null) {
             context.startService(intent);
 
             // There may be multiple widgets active, so update all of them
@@ -78,9 +81,10 @@ this.appWidgetIds=appWidgetIds;
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
     }
-    public void updateWidgetAdapter(ArrayList<Article> articles)
-    {  Intent intent = new Intent(context,
-            MyAppWidgetService.class);
+
+    public void updateWidgetAdapter(ArrayList<Article> articles) {
+        Intent intent = new Intent(context,
+                MyAppWidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
                 appWidgetIds);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.my_app_widget);
@@ -96,11 +100,11 @@ this.appWidgetIds=appWidgetIds;
                 PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setPendingIntentTemplate(R.id.listView, pendingIntent);
         // Update the widgets via the service
-      //  intent.putExtra("articles",articles.get(0));
+        //  intent.putExtra("articles",articles.get(0));
         intent.setData(Uri.parse(
                 intent.toUri(Intent.URI_INTENT_SCHEME)));
         context.startService(intent);
-            appWidgetManager.updateAppWidget(appWidgetIds,remoteViews);
+        appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
     }
 
 

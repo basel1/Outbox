@@ -21,16 +21,16 @@ import salah.basel.nanodegree.outbox.R;
 
 public class WritersRecycleAdapter extends RecyclerView.Adapter<WritersRecycleAdapter.ViewHolder> implements AdapterView.OnItemClickListener, View.OnClickListener {
 
-ArrayList<Writer> Writers;
+    ArrayList<Writer> Writers;
     Context context;
+
     public WritersRecycleAdapter(FragmentActivity activity, ArrayList<Writer> writers) {
 
-        Writers= writers;
-       this.context=activity.getBaseContext();
-        if(Writers==null)
-        {
-            Writers=new ArrayList<>();
-            Writer s=new Writer();
+        Writers = writers;
+        this.context = activity.getBaseContext();
+        if (Writers == null) {
+            Writers = new ArrayList<>();
+            Writer s = new Writer();
             s.setName("Waiting for network connection");
 
             Writers.add(s);
@@ -46,15 +46,15 @@ ArrayList<Writer> Writers;
     }
 
     @Override
-    public void onBindViewHolder( ViewHolder holder, int position) {
-     holder.sp_name.setText(Writers.get(position).getName());
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.sp_name.setText(Writers.get(position).getName());
         holder.sp_job.setText((Writers.get(position).getSection()));
-        if(Writers.get(position).getPhoto()!="")
-        Picasso.with(context).load(Writers.get(position).getPhoto())
-                .error(R.drawable.writericon)
-                .placeholder(R.drawable.writericon)
-                .into(holder.sp_image);
-holder.view.setId(position);
+        if (Writers.get(position).getPhoto() != "")
+            Picasso.with(context).load(Writers.get(position).getPhoto())
+                    .error(R.drawable.writericon)
+                    .placeholder(R.drawable.writericon)
+                    .into(holder.sp_image);
+        holder.view.setId(position);
 
     }
 
@@ -72,7 +72,7 @@ holder.view.setId(position);
 
     @Override
     public void onClick(View v) {
-        int position=v.getId();
+        int position = v.getId();
         L.m("position " + position);
 
        /* Intent intent=new Intent(context, WriterDetails.class);
@@ -80,17 +80,18 @@ holder.view.setId(position);
 context.startActivity(intent);*/
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder  {
-TextView sp_name;
-    TextView sp_job;
-         ImageView sp_image;
-View view;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView sp_name;
+        TextView sp_job;
+        ImageView sp_image;
+        View view;
+
         public ViewHolder(View view) {
             super(view);
-            sp_image= (ImageView) view.findViewById(R.id.thumb);
+            sp_image = (ImageView) view.findViewById(R.id.thumb);
             sp_name = (TextView) view.findViewById(R.id.sp_name);
             sp_job = (TextView) view.findViewById(R.id.sp_job);
-this.view=view;
+            this.view = view;
         }
 
 

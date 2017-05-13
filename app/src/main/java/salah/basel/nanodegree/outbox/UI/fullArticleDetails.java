@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -13,45 +12,43 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
-
 
 import salah.basel.nanodegree.outbox.R;
 
-public class fullArticleDetails extends AppCompatActivity {
+public class FullArticleDetails extends AppCompatActivity {
     private Toolbar toolbar;
     TextView head;
-    TextView content ;
-    TextView writer ;
+    TextView content;
+    TextView writer;
     Intent ret;
-    void loadFullArticle(Intent returned)
-    {
-         content = (TextView) findViewById(R.id.art_content);
+
+    void loadFullArticle(Intent returned) {
+        content = (TextView) findViewById(R.id.art_content);
 
         head = (TextView) findViewById(R.id.text_head2);
         content.setText(returned.getStringExtra("content"));
         head.setText(returned.getStringExtra("head"));
         writer = (TextView) findViewById(R.id.text_writer);
-        writer.setText(" بقلم : " + returned.getStringExtra("writer_name"));
+        writer.setText( returned.getStringExtra("writer_name"));
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent returned = getIntent();
-            setContentView(R.layout.activity_full_article_details);
-            loadFullArticle(returned);
+        setContentView(R.layout.activity_full_article_details);
+        loadFullArticle(returned);
 
-        ret=returned;
+        ret = returned;
         TextView time = (TextView) findViewById(R.id.text_time);
-        ImageView writer_img= (ImageView) findViewById(R.id.writer_img);
+        ImageView writer_img = (ImageView) findViewById(R.id.writer_img);
 
 
-
-       // Picasso.with(this).load(speakers.get(3).get(i)).error(R.drawable.icon_speaker).placeholder(R.drawable.icon_speaker).into(writer_img);
+        // Picasso.with(this).load(speakers.get(3).get(i)).error(R.drawable.icon_speaker).placeholder(R.drawable.icon_speaker).into(writer_img);
 
         ImageView img = (ImageView) findViewById(R.id.art_pic);
-                toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -76,8 +73,7 @@ public class fullArticleDetails extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
 
-        if(id==R.id.shareTopic)
-        {
+        if (id == R.id.shareTopic) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, "https://www.facebook.com/zmagazine?fref=ts");
@@ -85,10 +81,9 @@ public class fullArticleDetails extends AppCompatActivity {
             this.startActivity(Intent.createChooser(shareIntent, "share via"));
 
         }
-        if(id==R.id.addfavorite)
-        {
-       //  new sqlliteAdapter(this).addNewFavourite(ret.getStringExtra("head"));
-            Toast.makeText(fullArticleDetails.this, "تم اضافة المقال للمفضلة ", Toast.LENGTH_SHORT).show();
+        if (id == R.id.addfavorite) {
+            //  new sqlliteAdapter(this).addNewFavourite(ret.getStringExtra("head"));
+            Toast.makeText(FullArticleDetails.this, getResources().getString(R.string.articleAdded), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

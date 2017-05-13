@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="salah.basel.nanodegree.outbox.UI.fullArticleDetails">
+    tools:context="salah.basel.nanodegree.outbox.UI.FullArticleDetails">
 
 
     <ScrollView
@@ -25,6 +25,7 @@
                 android:contentDescription="@string/app_name"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
+
             <TextView
                 android:id="@+id/text_head2"
                 android:layout_width="match_parent"
@@ -64,6 +65,7 @@
                 android:textSize="20sp" />
 
             <ImageView
+                android:contentDescription="@string/articleImageWidget"
                 android:id="@+id/art_pic"
                 android:layout_width="fill_parent"
                 android:layout_height="192dp"
