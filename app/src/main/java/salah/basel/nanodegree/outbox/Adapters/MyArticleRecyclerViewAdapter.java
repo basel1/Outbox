@@ -21,7 +21,7 @@ import salah.basel.nanodegree.outbox.R;
 import salah.basel.nanodegree.outbox.UI.ArticleFragment.OnListFragmentInteractionListener;
 import salah.basel.nanodegree.outbox.Model.Article;
 import salah.basel.nanodegree.outbox.UI.dummy.DummyContent;
-import salah.basel.nanodegree.outbox.UI.Temp;
+import salah.basel.nanodegree.outbox.UI.FullArticleDetails;
 
 import java.util.ArrayList;
 
@@ -67,7 +67,7 @@ public class MyArticleRecyclerViewAdapter extends RecyclerView.Adapter<MyArticle
                 if (null != mListener) {
                     mListener.onListFragmentInteraction(new DummyContent.DummyItem("", "", ""));
                 }
-                Intent intent = new Intent(v.getContext(), Temp.class);
+                Intent intent = new Intent(v.getContext(), FullArticleDetails.class);
                 intent.putExtra("position", position);
                 intent.putExtra("time", mValues.get(position).getArt_time());
                 intent.putExtra("head", mValues.get(position).getHead());
