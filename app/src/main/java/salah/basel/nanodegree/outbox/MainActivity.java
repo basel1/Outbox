@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         adView.loadAd(adRequest);
-        initNavigationView();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new ArticleFragment()).commit();
+        if (savedInstanceState == null) {
+            initNavigationView();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, new ArticleFragment()).commit();
+        }
     }
 
     private void initNavigationView() {

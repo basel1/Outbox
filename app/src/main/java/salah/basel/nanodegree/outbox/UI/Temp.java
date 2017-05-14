@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import salah.basel.nanodegree.outbox.R;
 
-public class FullArticleDetails extends AppCompatActivity {
+public class Temp extends AppCompatActivity {
     private Toolbar toolbar;
     TextView head;
     TextView content;
@@ -83,7 +83,7 @@ public class FullArticleDetails extends AppCompatActivity {
         }
         if (id == R.id.addfavorite) {
             //  new sqlliteAdapter(this).addNewFavourite(ret.getStringExtra("head"));
-            Toast.makeText(FullArticleDetails.this, getResources().getString(R.string.articleAdded), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Temp.this, getResources().getString(R.string.articleAdded), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.FullArticleDetails"></activity>
+        <activity android:name=".UI.Temp"></activity>
 
         <receiver android:name=".myWidget.MyAppWidget">
             <intent-filter>
